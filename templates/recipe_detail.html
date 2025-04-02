@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}{{ recipe.title }} - Recipe Sharing Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}" style="height: 400px; object-fit: cover;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="card-title mb-0">{{ recipe.title }}</h1>
+                    {% if session.username %}
+                    <button class="btn btn-outline-danger favorite-btn" data-recipe-id="{{ recipe.id }}">
+                        <i class="fas fa-heart {% if is_favorite %}text-danger{% endif %}"></i>
+                    </button>
+                    {% endif %}
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <span class="badge bg-primary">{{ recipe.category }}</span>
+                        <small class="text-muted ms-2">By <a href="{{ url_for('user_profile', username=recipe.author) }}">{{ recipe.author }}</a></small>
+                    </div>
+                    <div class="text-muted">
+                        <i class="fas fa-clock"></i> Prep: {{ recipe.prep_time }}min | Cook: {{ recipe.cook_time }}min | Serves: {{ recipe.servings }}
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h3>Description</h3>
+                    <p>{{ recipe.description }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h3>Ingredients</h3>
+                    <ul class="list-group">
+                        {% for ingredient in recipe.ingredients.split(',') %}
+                        <li class="list-group-item">{{ ingredient.strip() }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <h3>Instructions</h3>
+                    <ol class="list-group list-group-numbered">
+                        {% for step in recipe.instructions.split(',') %}
+                        <li class="list-group-item">{{ step.strip() }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+
+                <!-- Rating Section -->
+                <div class="mb-4">
+                    <h3>Rating</h3>
+                    <div class="d-flex align-items-center">
+                        <div class="rating-display me-3">
+                            <span class="h4 mb-0">{{ "%.1f"|format(rating) }}</span>
+                            <div class="text-warning">
+                                {% for i in range(5) %}
+                                <i class="fas fa-star {% if i < rating|round|int %}text-warning{% else %}text-muted{% endif %}"></i>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if session.username %}
+                        <div class="rating-input">
+                            <form method="POST" action="{{ url_for('rate_recipe', recipe_id=recipe.id) }}" class="d-flex">
+                                {% for i in range(1, 6) %}
+                                <button type="submit" name="rating" value="{{ i }}" class="btn btn-link p-0 me-1">
+                                    <i class="fas fa-star {% if i <= user_rating %}text-warning{% else %}text-muted{% endif %}"></i>
+                                </button>
+                                {% endfor %}
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="mb-4">
+                    <h3>Comments</h3>
+                    {% if session.username %}
+                    <form method="POST" action="{{ url_for('add_comment', recipe_id=recipe.id) }}" class="mb-4">
+                        <div class="mb-3">
+                            <textarea class="form-control" name="comment" rows="3" placeholder="Add a comment..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                    </form>
+                    {% endif %}
+
+                    <div class="comments-list">
+                        {% for comment in comments %}
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ comment.user }}</h6>
+                                    <small class="text-muted">{{ comment.date }}</small>
+                                </div>
+                                <p class="card-text">{{ comment.comment }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left"></i> Back to Recipes
+                    </a>
+                    {% if session.username == recipe.author %}
+                    <div>
+                        <a href="#" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit Recipe
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete Recipe
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Favorite button functionality
+    const favoriteBtn = document.querySelector('.favorite-btn');
+    if (favoriteBtn) {
+        favoriteBtn.addEventListener('click', function() {
+            const recipeId = this.dataset.recipeId;
+            fetch(`/toggle_favorite/${recipeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('text-danger');
+                }
+            });
+        });
+    }
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Recipe Sharing Blog{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-primary text-white py-5 mb-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-4">Welcome to Recipe Sharing</h1>
+                <p class="lead">Discover and share amazing recipes from around the world!</p>
+                {% if not session.username %}
+                <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">Join Our Community</a>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <form method="GET" class="card bg-white p-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" name="q" value="{{ search_query }}" 
+                               placeholder="Search recipes...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="mt-2">
+                        <select class="form-select" name="category">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                            <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Featured Recipes -->
+    <div class="mb-5">
+        <h2 class="mb-4">Featured Recipes</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for recipe in recipes[:6] %}
+            <div class="col">
+                <div class="card h-100 recipe-card">
+                    <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text">{{ recipe.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-primary">{{ recipe.category }}</span>
+                            <small class="text-muted">By {{ recipe.author }}</small>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> Prep: {{ recipe.prep_time }}min | Cook: {{ recipe.cook_time }}min
+                            </small>
+                        </div>
+                        <div class="mt-3">
+                            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-outline-primary">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="mb-5">
+        <h2 class="mb-4">Browse by Category</h2>
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            {% for category in categories %}
+            <div class="col">
+                <a href="{{ url_for('index', category=category.name) }}" class="text-decoration-none">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="card-text text-muted small">{{ category.description }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Latest Recipes -->
+    <div class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Latest Recipes</h2>
+            {% if session.username %}
+            <a href="{{ url_for('add_recipe') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Recipe
+            </a>
+            {% endif %}
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for recipe in recipes %}
+            <div class="col">
+                <div class="card h-100 recipe-card">
+                    <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text">{{ recipe.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-primary">{{ recipe.category }}</span>
+                            <small class="text-muted">By {{ recipe.author }}</small>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> Prep: {{ recipe.prep_time }}min | Cook: {{ recipe.cook_time }}min
+                            </small>
+                        </div>
+                        <div class="mt-3">
+                            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-outline-primary">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if not recipes %}
+    <div class="text-center py-5">
+        <h3>No recipes found</h3>
+        <p>Be the first to share a recipe!</p>
+        {% if not session.username %}
+        <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a> to add recipes.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

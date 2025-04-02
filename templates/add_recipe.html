@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Recipe - Recipe Sharing Blog{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Add New Recipe</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Recipe Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="">Select a category</option>
+                                    {% for category in categories %}
+                                    <option value="{{ category.name }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="prep_time" class="form-label">Preparation Time (minutes)</label>
+                                <input type="number" class="form-control" id="prep_time" name="prep_time" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="cook_time" class="form-label">Cooking Time (minutes)</label>
+                                <input type="number" class="form-control" id="cook_time" name="cook_time" min="0" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="servings" class="form-label">Number of Servings</label>
+                        <input type="number" class="form-control" id="servings" name="servings" min="1" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="ingredients" class="form-label">Ingredients</label>
+                        <textarea class="form-control" id="ingredients" name="ingredients" rows="5" required 
+                            placeholder="Enter each ingredient on a new line or separate with commas"></textarea>
+                        <div class="form-text">Separate ingredients with commas or new lines</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="instructions" class="form-label">Instructions</label>
+                        <textarea class="form-control" id="instructions" name="instructions" rows="5" required
+                            placeholder="Enter each step on a new line or separate with commas"></textarea>
+                        <div class="form-text">Separate steps with commas or new lines</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="image_url" class="form-label">Image URL</label>
+                        <input type="url" class="form-control" id="image_url" name="image_url" required
+                            placeholder="https://example.com/image.jpg">
+                        <div class="form-text">Enter a valid URL for the recipe image</div>
+                        <div class="image-preview mt-2"></div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Add Recipe</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Image preview functionality
+    const imageUrlInput = document.getElementById('image_url');
+    const previewContainer = document.querySelector('.image-preview');
+    
+    imageUrlInput.addEventListener('input', function() {
+        const preview = document.createElement('img');
+        preview.src = this.value;
+        preview.style.maxWidth = '200px';
+        preview.style.marginTop = '10px';
+        
+        previewContainer.innerHTML = '';
+        if (this.value) {
+            previewContainer.appendChild(preview);
+        }
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Recipe Sharing Blog{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <i class="fas fa-user-circle fa-3x"></i>
+                        </div>
+                        <div>
+                            <h2 class="card-title mb-0">Welcome, {{ user.username }}!</h2>
+                            <p class="mb-0">Here's your recipe sharing dashboard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fas fa-utensils fa-2x text-primary mb-3"></i>
+                    <h3 class="card-title">{{ recipes|length }}</h3>
+                    <p class="card-text">My Recipes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fas fa-heart fa-2x text-danger mb-3"></i>
+                    <h3 class="card-title">{{ favorite_recipes|length }}</h3>
+                    <p class="card-text">Favorite Recipes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fas fa-comments fa-2x text-success mb-3"></i>
+                    <h3 class="card-title">{{ comments|length }}</h3>
+                    <p class="card-text">My Comments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Profile Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <p class="form-control-static">{{ user.username }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <p class="form-control-static">{{ user.email or 'Not set' }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Member Since</label>
+                        <p class="form-control-static">{{ user.join_date }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Bio</label>
+                        <p class="form-control-static">{{ user.bio or 'No bio yet' }}</p>
+                    </div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        {% for recipe in recipes[:5] %}
+                        <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ recipe.title }}</h6>
+                                <small class="text-muted">{{ recipe.date.split()[0] }}</small>
+                            </div>
+                            <small class="text-muted">{{ recipe.category }}</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Recipes -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Favorite Recipes</h5>
+                </div>
+                <div class="card-body">
+                    {% if favorite_recipes %}
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for recipe in favorite_recipes %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}" style="height: 150px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ recipe.title }}</h5>
+                                    <p class="card-text">{{ recipe.description }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-primary">{{ recipe.category }}</span>
+                                        <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-sm btn-outline-primary">View Recipe</a>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock"></i> {{ recipe.prep_time }}m prep, {{ recipe.cook_time }}m cook
+                                            <i class="fas fa-users ms-2"></i> {{ recipe.servings }} servings
+                                        </small>
+                                    </div>
+                                    <small class="text-muted d-block mt-1">
+                                        <i class="fas fa-calendar"></i> Added on {{ recipe.date.split()[0] }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-center text-muted">No favorite recipes yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Recipes -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">My Recipes</h5>
+                    <a href="{{ url_for('add_recipe') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> Add New Recipe
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if recipes %}
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for recipe in recipes %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}" style="height: 150px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ recipe.title }}</h5>
+                                    <p class="card-text">{{ recipe.description }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-primary">{{ recipe.category }}</span>
+                                        <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-sm btn-outline-primary">View Recipe</a>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock"></i> {{ recipe.prep_time }}m prep, {{ recipe.cook_time }}m cook
+                                            <i class="fas fa-users ms-2"></i> {{ recipe.servings }} servings
+                                        </small>
+                                    </div>
+                                    <small class="text-muted d-block mt-1">
+                                        <i class="fas fa-calendar"></i> Added on {{ recipe.date.split()[0] }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-center text-muted">No recipes shared yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('edit_profile', username=user.username) }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="3">{{ user.bio }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
