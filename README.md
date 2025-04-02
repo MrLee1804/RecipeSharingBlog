@@ -22,7 +22,7 @@ A modern web application for sharing and discovering recipes, built with Flask a
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd recipe-sharing-blog
+cd RecipeSharingBlog
 ```
 
 2. Create a virtual environment (recommended):
