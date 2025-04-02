@@ -1,3 +1,0 @@
-username,password_hash,email,bio,join_date
-admin,scrypt:32768:8:1$tGdABz9XOJ16YyFc$f82a082d15f7c91d8e900574e75a2133661102f5d59b6b691aa4c0281b32f3d4332e40636be1a6fdcf3500836b7560a271a06d48ff078fdcf3b974a9b3102a0c,,,2025-03-30
-demo@example.com,scrypt:32768:8:1$r8CFNPIR39KJeovF$19524100ec90c1a773a09df37c944c7b7821e020eed3b3dfe339fd48b1df4ca0dbacbd2882f404198d9f71fdcdafecdccead9b400c4090b1c453b8a73e2e3484,user4test@gmail.com,,2025-03-30
