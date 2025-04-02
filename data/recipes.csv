@@ -1,0 +1,191 @@
+id,title,description,ingredients,instructions,author,image_url,category,prep_time,cook_time,servings,date
+1,Classic Chocolate Cake,A moist and rich chocolate cake that's perfect for any occasion.,"2 cups flour
+2 cups sugar
+3/4 cup cocoa powder
+2 eggs
+1 cup milk
+1/2 cup vegetable oil
+2 tsp vanilla extract
+1 tsp baking soda
+1/2 tsp salt","1. Preheat oven to 350°F
+2. Mix dry ingredients
+3. Add wet ingredients
+4. Bake for 30-35 minutes",admin,https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Desserts,20,35,12,2025-03-30 14:43:01
+2,Spaghetti Carbonara,"Classic Italian pasta dish with eggs, cheese, and pancetta.","400g spaghetti
+200g pancetta
+4 large eggs
+100g Pecorino Romano
+100g Parmigiano Reggiano
+Black pepper
+Salt","1. Cook pasta
+2. Fry pancetta
+3. Mix eggs and cheese
+4. Combine all ingredients",admin,https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Main Course,15,20,4,2025-03-30 14:43:01
+3,Caesar Salad,Fresh and crispy Caesar salad with homemade dressing.,"1 head romaine lettuce
+1 cup croutons
+1/2 cup parmesan cheese
+1/4 cup olive oil
+2 tbsp lemon juice
+1 egg yolk
+2 cloves garlic
+Salt and pepper","1. Chop lettuce
+2. Make dressing
+3. Toss ingredients
+4. Add cheese and croutons",admin,https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Salads,15,0,4,2025-03-30 14:43:01
+4,Chicken Stir-Fry,Quick and healthy Asian-style chicken stir-fry with vegetables.,"500g chicken breast
+2 bell peppers
+1 onion
+2 carrots
+3 tbsp soy sauce
+2 cloves garlic
+1 tbsp ginger
+2 tbsp oil","1. Cut chicken and vegetables
+2. Heat oil
+3. Stir-fry chicken
+4. Add vegetables and sauce",admin,https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Quick Meals,20,15,4,2025-03-30 14:43:01
+5,Apple Pie,Classic American apple pie with cinnamon and nutmeg.,"6 apples
+1 cup sugar
+1 tsp cinnamon
+1/4 tsp nutmeg
+2 pie crusts
+2 tbsp butter","1. Peel and slice apples
+2. Mix with spices
+3. Fill pie crust
+4. Bake for 45 minutes",admin,https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Baking,30,45,8,2025-03-30 14:43:01
+6,Minestrone Soup,Hearty Italian vegetable soup with pasta and beans.,"2 carrots
+2 celery stalks
+1 onion
+2 cloves garlic
+1 can tomatoes
+1 can beans
+1 cup pasta
+Vegetable broth","1. Chop vegetables
+2. Sauté aromatics
+3. Add broth and vegetables
+4. Simmer for 30 minutes",admin,https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Soups,20,30,6,2025-03-30 14:43:01
+7,Greek Salad,Fresh Mediterranean salad with feta cheese and olives.,"2 tomatoes
+1 cucumber
+1 red onion
+1 cup olives
+200g feta cheese
+Extra virgin olive oil
+Oregano","1. Chop vegetables
+2. Add olives and feta
+3. Dress with oil
+4. Sprinkle oregano",admin,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Salads,15,0,4,2025-03-30 14:43:01
+8,Beef Tacos,Mexican-style beef tacos with fresh toppings.,"500g ground beef
+Taco seasoning
+Tortillas
+Lettuce
+Tomatoes
+Onion
+Cheese
+Sour cream","1. Brown beef
+2. Add seasoning
+3. Warm tortillas
+4. Assemble tacos",admin,https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Main Course,20,15,4,2025-03-30 14:43:01
+9,Chocolate Chip Cookies,Classic homemade chocolate chip cookies.,"2 1/4 cups flour
+1 cup butter
+3/4 cup sugar
+2 eggs
+2 cups chocolate chips
+1 tsp vanilla
+1 tsp baking soda","1. Mix ingredients
+2. Form cookies
+3. Bake for 10 minutes
+4. Cool on rack",admin,https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Baking,15,10,24,2025-03-30 14:43:01
+10,Tomato Basil Soup,Creamy tomato soup with fresh basil.,"2 cans tomatoes
+1 onion
+2 cloves garlic
+Fresh basil
+Heavy cream
+Butter
+Salt and pepper","1. Sauté vegetables
+2. Add tomatoes
+3. Simmer
+4. Blend and add cream",admin,https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Soups,15,25,4,2025-03-30 14:43:01
+11,Breakfast Burrito,"Hearty breakfast burrito with eggs, potatoes, and sausage.","4 eggs
+2 potatoes
+200g sausage
+Tortillas
+Cheese
+Bell peppers
+Onion","1. Cook potatoes
+2. Fry sausage
+3. Scramble eggs
+4. Assemble burrito",admin,https://images.unsplash.com/photo-1551788038-d6bb94b5b9f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Breakfast,15,20,4,2025-03-30 14:43:01
+12,Vegetable Curry,Spicy vegetable curry with coconut milk.,"Mixed vegetables
+Coconut milk
+Curry powder
+Ginger
+Garlic
+Onion
+Rice","1. Sauté aromatics
+2. Add vegetables
+3. Add coconut milk
+4. Simmer until tender",admin,https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Vegetarian,20,30,4,2025-03-30 14:43:01
+13,Smoothie Bowl,Healthy smoothie bowl with fresh fruits and granola.,"Banana
+Mixed berries
+Spinach
+Almond milk
+Granola
+Chia seeds
+Honey","1. Blend fruits
+2. Pour in bowl
+3. Top with granola
+4. Add toppings",admin,https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Breakfast,10,0,2,2025-03-30 14:43:01
+14,Homemade Pizza,Classic homemade pizza with fresh toppings.,"Pizza dough
+Tomato sauce
+Mozzarella
+Fresh basil
+Olive oil
+Toppings of choice","1. Roll out dough
+2. Add sauce
+3. Add toppings
+4. Bake at high heat",admin,https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Main Course,30,15,4,2025-03-30 14:43:01
+15,Mango Sorbet,Refreshing mango sorbet with lime.,"3 ripe mangoes
+Sugar
+Lime juice
+Water","1. Blend mangoes
+2. Add sugar
+3. Freeze
+4. Stir occasionally",admin,https://images.unsplash.com/photo-1501446529957-6226bd3c01d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Desserts,15,0,4,2025-03-30 14:43:01
+16,Quinoa Buddha Bowl,Healthy quinoa bowl with roasted vegetables.,"Quinoa
+Mixed vegetables
+Chickpeas
+Tahini dressing
+Avocado
+Kale","1. Cook quinoa
+2. Roast vegetables
+3. Make dressing
+4. Assemble bowl",admin,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Vegetarian,20,25,2,2025-03-30 14:43:01
+17,Lemonade,Fresh homemade lemonade with mint.,"Lemons
+Sugar
+Water
+Fresh mint
+Ice","1. Juice lemons
+2. Make simple syrup
+3. Mix ingredients
+4. Add mint",admin,https://images.unsplash.com/photo-1622493576007-d4a9f24c0b60?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Beverages,10,0,4,2025-03-30 14:43:01
+18,Trail Mix,Healthy homemade trail mix with nuts and dried fruits.,"Mixed nuts
+Dried fruits
+Dark chocolate
+Seeds
+Coconut flakes","1. Mix ingredients
+2. Store in airtight container",admin,https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Snacks,10,0,8,2025-03-30 14:43:01
+19,Sourdough Bread,Classic sourdough bread with crispy crust.,"Sourdough starter
+Flour
+Water
+Salt","1. Feed starter
+2. Mix dough
+3. Ferment
+4. Bake",admin,https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Baking,30,45,12,2025-03-30 14:43:01
+20,15-Minute Pasta,Quick and easy pasta dish with fresh ingredients.,"Pasta
+Cherry tomatoes
+Garlic
+Basil
+Olive oil
+Parmesan","1. Cook pasta
+2. Sauté garlic
+3. Add tomatoes
+4. Toss with basil",admin,https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80,Quick Meals,5,10,4,2025-03-30 14:43:01
